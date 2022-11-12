@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Caixa de Mensagens - Treino</title>
+		<link rel="stylesheet" href="./style.css" />
+
+	</head>
+
+	<body>
+
+		<div id="Janela">
+			<h2 id="Janela_titulo">Caixa de Mensagens</h2>
+			<div id="Janela_caixa-mensagens">
+				<div id="Janela_caixa-mensagens_output"></div>
+			</div>
+			<div id="Janela_enviar-mensagens">
+				<button onclick="enviarmsg()"
+				id="Janela_enviar-mensagens_button">enviar</button>
+				<input id="Janela_enviar-mensagens_input"/>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+
+<script>
+
+	function enviarmsg() {
+		var Msg = document.getElementById("Janela_enviar-mensagens_input");
+		var Box = document.getElementById("Janela_caixa-mensagens_output");
+		if ( !(Msg.value == "") ) {
+		const div = Object.assign(document.createElement('div'), {
+			classList: [ 'Mensagem' ],
+			innerHTML: '<p>'+Msg.value+'</p>'
+			});
+		document.getElementById("Janela_caixa-mensagens_output").append(div);
+		Msg.value = "";
+		if ( (Box.scrollTop+68) > (Box.scrollHeight-438) ) {
+			Box.scrollTop = Box.scrollHeight;
+		}
+	}}
+
+	var input = document.getElementById("Janela_enviar-mensagens_input");
+	input.addEventListener("keypress", function(event) {
+	if (event.key === "Enter") {
+		event.preventDefault();
+		document.getElementById("Janela_enviar-mensagens_button").click();}
+	});
+
+</script>
